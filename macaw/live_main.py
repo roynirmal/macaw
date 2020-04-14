@@ -6,7 +6,7 @@ Authors: Hamed Zamani (hazamani@microsoft.com)
 
 from macaw.cis import CIS
 from macaw.core import retrieval
-from macaw.core.input_handler.action_detection import RequestDispatcher
+from macaw.core.input_handler.action_detection import PreActionRequestDispatcher
 from macaw.core.output_handler import naive_output_selection
 from macaw.util.logging import Logger
 
@@ -30,7 +30,7 @@ class ConvQA(CIS):
         # self.qa = mrc.get_mrc_model(params=self.params)
         # self.params['actions'] = {'retrieval': self.retrieval, 'qa': self.qa}
         self.params['actions'] = {'retrieval': self.retrieval}
-        self.request_dispatcher = RequestDispatcher(self.params)
+        self.request_dispatcher = PreActionRequestDispatcher(self.params)
         self.output_selection = naive_output_selection.NaiveOutputProcessing({})
 
     def request_handler_func(self, conv_list):
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     interface_params = {'interface': 'stdio'}
     # These are parameters used by the retrieval model.
     retrieval_params = {'query_generation': 'simple',  # the model that generates a query from a conversation history.
-                        'use_coref': True,  # True, if query generator can use coreference resolution, otherwise False.
+                        'use_coref': False,  # True, if query generator can use coreference resolution, otherwise False.
                         'search_engine': 'indri',  # the search engine. It can be either 'indri' or 'bing'.
                         'bing_key': 'YOUR_BING_SUBSCRIPTION_KEY',  # Bing API key
                         'search_engine_path': '/indri-5.11/',  # The path to the indri toolkit.
