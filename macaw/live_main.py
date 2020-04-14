@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
     # These are required database parameters if the mode is 'live'. The host and port of the machine hosting the
     # database, as well as the database name.
-    db_params = {'interaction_db_host': 'localhost',
+    db_params = {'interaction_db_host': 'mongo',
                  'interaction_db_port': 27017,
                  'interaction_db_name': 'macaw_test'}
 
